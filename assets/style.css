@@ -139,6 +139,10 @@ select:focus {
     font-style: italic;
 }
 
+.hidden {
+  display: none;
+}
+
 
 /* Responsivo: Celulares */
 @media (max-width: 480px) {

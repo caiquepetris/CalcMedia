@@ -134,6 +134,7 @@ function calcularMedia() {
     // Exibir o resultado
     exibirResultado(`Média Final: ${media.toFixed(2)}`);
 }
+document.getElementById("provaIntegradaContainer").classList.add("hidden");
 
 // Inicializar a interface quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
