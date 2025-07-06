@@ -1,0 +1,187 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Estilização do body */
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+/* Container opcional para centralizar */
+.calculadora-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Título */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #1a1a1a;
+    text-align: center;
+}
+
+/* Agrupamento lado a lado */
+.notas-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    flex: 1;
+    min-width: 130px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="number"] {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+    font-size: 1rem;
+}
+
+input[type="number"]::placeholder {
+    color: #999;
+}
+
+input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Botão */
+button {
+    padding: 12px;
+    width: 100%;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+    font-size: 1.1rem;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Resultado */
+#resultado {
+    margin-top: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Rodapé */
+footer {
+    margin-top: auto;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    color: #777;
+    text-align: center;
+}
+/* Adicione estes estilos ao seu CSS existente */
+
+.select-container {
+    margin-bottom: 20px;
+}
+
+select {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    background-color: white;
+}
+
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Adicione este estilo ao seu CSS existente */
+
+.info-text {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+
+/* Responsivo: Celulares */
+@media (max-width: 480px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    .calculadora-container {
+        padding: 20px;
+    }
+
+    .notas-row {
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    button {
+        font-size: 1rem;
+    }
+
+    input[type="number"] {
+        font-size: 1rem;
+    }
+}
+
+/* Responsivo: Tablets */
+@media (max-width: 768px) {
+    .calculadora-container {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    button {
+        font-size: 1.05rem;
+    }
+
+    .notas-row {
+        gap: 12px;
+    }
+}

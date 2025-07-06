@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Média Final -  FSA</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="calculadora-container">
+        <h1>Calcule sua <b>Média Final</b></h1>
+
+        <div class="select-container">
+            <label for="tipoCalculo">Tipo de cálculo:</label>
+            <select id="tipoCalculo" onchange="toggleProvaIntegrada()">
+                <option value="semPI">Sem Prova Integrada</option>
+                <option value="comPI">Com Prova Integrada</option>
+            </select>
+        </div>
+        
+        <div class="notas-row">
+            <div class="input-group">
+                <label for="p1">P1:</label>
+                <input type="number" id="p1" step="0.1" max="10" required placeholder="Coloque sua nota da P1">
+            </div>
+            <div class="input-group">
+                <label for="p2">P2:</label>
+                <input type="number" id="p2" step="0.1" max="10" required placeholder="Coloque sua nota da P2">
+            </div>
+        </div>
+        
+        <label for="atividade">Atividade:</label>
+        <input type="number" id="atividade" step="0.1" max="10" required placeholder="Coloque sua nota de atividade">
+        
+        <div id="provaIntegradaContainer" style="display: none;">
+            <label for="provaIntegrada">Prova Integrada:</label>
+            <input type="number" id="provaIntegrada" step="0.1" max="10" placeholder="Coloque sua nota da Prova Integrada">
+            <p class="info-text">Nota: Com Prova Integrada, a nota de atividade será composta por 50% da atividade normal e 50% da prova integrada.</p>
+        </div>
+        
+        <button onclick="calcularMedia()">Calcule a Média Final</button>
+        <p id="resultado"></p>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 <a href="https://petris.digital/" style="text-decoration: none; color:grey">PETRIS</a>, todos os direitos reservados</p>
+    </footer>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>
