@@ -1,3 +1,3 @@
-Aqui contém um projeto para calcular a média da faculdade, foi feita para facilitar o calculo da media final. 
+# Projeto Atualizado com de html,css & js para react + vite
 
-by  caiquepetris.
+- Criado para facilitar o calculo da média da faculdade
