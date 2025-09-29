@@ -61,7 +61,6 @@ function calcularNotaAtividade(atividade, tipoCalculo) {
     return atividade;
 }
 
-
 function calcularMedia() {
 
     const p1 = obterValorInput('p1');
