@@ -2,15 +2,13 @@ function Footer() {
   return (
     <footer>
       <p>
-        &copy; 2025{" "}
+        &copy; 2026{" "}
         <a
-          href="https://www.instagram.com/caiquepetris_/"
+          href="https://www.instagram.com/caiquepetris/"
           target="_blank"
           rel="noopener noreferrer"
           style={{ textDecoration: "none", color: "grey" }}
-        >
-          @caiquepetris_
-        </a>, todos os direitos reservados
+          >PETRIS</a>, todos os direitos reservados
       </p>
     </footer>
   );

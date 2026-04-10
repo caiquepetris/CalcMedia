@@ -1,6 +1,11 @@
+// src/App.jsx
 import { useState } from "react";
 import "./App.css";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import InputNota from "./components/InputNota";
+import ResultadoFinal from "./components/ResultadoFinal";
+import { calcularMedia } from "./utils/calcularMedia";
 
 function App() {
   const [tipoCalculo, setTipoCalculo] = useState("semPI");
@@ -10,30 +15,30 @@ function App() {
   const [provaIntegrada, setProvaIntegrada] = useState("");
   const [resultado, setResultado] = useState(null);
 
-  const calcularMedia = () => {
-    const PESOS = {
-      P1: 0.4,
-      P2: 0.4,
-      ATIVIDADE: 0.2,
-    };
+  const handleCalcular = () => {
+    const camposBase = [p1, p2, atividade];
+    const camposTodos =
+      tipoCalculo === "comPI" ? [...camposBase, provaIntegrada] : camposBase;
 
-    let notaAtividadeFinal = Number(atividade);
-
-    if (tipoCalculo === "comPI") {
-      notaAtividadeFinal = (Number(atividade) + Number(provaIntegrada)) / 2;
-    }
-
-    if (isNaN(notaAtividadeFinal)) {
-      setResultado("Preencha todas as notas corretamente!");
+    if (camposTodos.some((n) => n === "")) {
+      setResultado(" Preencha todos os campos para calcular a média.");
       return;
     }
 
-    const media =
-      Number(p1) * PESOS.P1 +
-      Number(p2) * PESOS.P2 +
-      notaAtividadeFinal * PESOS.ATIVIDADE;
+    if (camposTodos.some((n) => Number(n) < 0 || Number(n) > 10)) {
+      setResultado(" As notas devem estar entre 0 e 10");
+      return;
+    }
 
-    setResultado(`Média Final: ${media.toFixed(2)}`);
+    const { media, situacao } = calcularMedia({
+      p1,
+      p2,
+      atividade,
+      provaIntegrada,
+      comPI: tipoCalculo === "comPI",
+    });
+
+    setResultado(`Média Final: ${media} — ${situacao}`);
   };
 
   return (
@@ -62,52 +67,17 @@ function App() {
 
       {/* Notas P1 e P2 */}
       <section className="notas-row">
-        <div className="input-group">
-          <label htmlFor="p1">P1:</label>
-          <input
-            type="number"
-            id="p1"
-            step="0.1"
-            min="0"
-            max="10"
-            required
-            value={p1}
-            onChange={(e) => setP1(e.target.value)}
-            placeholder="Nota da P1"
-          />
-        </div>
-
-        <div className="input-group">
-          <label htmlFor="p2">P2:</label>
-          <input
-            type="number"
-            id="p2"
-            step="0.1"
-            min="0"
-            max="10"
-            required
-            value={p2}
-            onChange={(e) => setP2(e.target.value)}
-            placeholder="Nota da P2"
-          />
-        </div>
+        <InputNota id="p1" label="P1" value={p1} onChange={(e) => setP1(e.target.value)} />
+        <InputNota id="p2" label="P2" value={p2} onChange={(e) => setP2(e.target.value)} />
       </section>
 
       {/* Atividade */}
-      <div className="input-group">
-        <label htmlFor="atividade">Atividade:</label>
-        <input
-          type="number"
-          id="atividade"
-          step="0.1"
-          min="0"
-          max="10"
-          required
-          value={atividade}
-          onChange={(e) => setAtividade(e.target.value)}
-          placeholder="Nota da Atividade"
-        />
-      </div>
+      <InputNota
+        id="atividade"
+        label="Atividade"
+        value={atividade}
+        onChange={(e) => setAtividade(e.target.value)}
+      />
 
       {/* Prova Integrada com animação */}
       <AnimatePresence>
@@ -119,19 +89,12 @@ function App() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="input-group">
-              <label htmlFor="provaIntegrada">Prova Integrada:</label>
-              <input
-                type="number"
-                id="provaIntegrada"
-                step="0.1"
-                min="0"
-                max="10"
-                value={provaIntegrada}
-                onChange={(e) => setProvaIntegrada(e.target.value)}
-                placeholder="Nota da Prova Integrada"
-              />
-            </div>
+            <InputNota
+              id="provaIntegrada"
+              label="Prova Integrada"
+              value={provaIntegrada}
+              onChange={(e) => setProvaIntegrada(e.target.value)}
+            />
             <p className="info-text">
               Nota: Com Prova Integrada, a nota de atividade será composta por
               50% da atividade normal e 50% da prova integrada.
@@ -141,25 +104,13 @@ function App() {
       </AnimatePresence>
 
       {/* Botão de calcular */}
-      <button type="button" onClick={calcularMedia}>
+      <button type="button" onClick={handleCalcular}>
         Calcule a Média Final
       </button>
 
       {/* Resultado */}
       <AnimatePresence>
-        {resultado && (
-          <motion.p
-            id="resultado"
-            role="status"
-            aria-live="polite"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-          >
-            {resultado}
-          </motion.p>
-        )}
+        {resultado && <ResultadoFinal resultado={resultado} />}
       </AnimatePresence>
     </div>
   );
