@@ -1,4 +1,8 @@
-/* Reset básico */
+:root {
+    --blue: #007bff;
+    --blue-dark: #0056b3;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +20,6 @@ body {
     min-height: 100vh;
 }
 
-
 .calculadora-container {
     background-color: #ffffff;
     padding: 30px;
@@ -26,14 +29,12 @@ body {
     max-width: 500px;
 }
 
-
 h1 {
     font-size: 2rem;
     margin-bottom: 30px;
     color: #1a1a1a;
     text-align: center;
 }
-
 
 .notas-row {
     display: flex;
@@ -53,30 +54,36 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="number"] {
+input[type="number"],
+select {
     padding: 10px;
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 6px;
+    font-size: 1rem;
     margin-bottom: 20px;
     transition: border-color 0.3s;
-    font-size: 1rem;
 }
 
 input[type="number"]::placeholder {
     color: #999;
 }
 
-input[type="number"]:focus {
-    border-color: #007bff;
+input[type="number"]:focus,
+select:focus {
+    border-color: var(--blue);
     outline: none;
 }
 
+select {
+    background-color: white;
+    margin-bottom: 10px;
+}
 
 button {
     padding: 12px;
     width: 100%;
-    background-color: #007bff;
+    background-color: var(--blue);
     border: none;
     color: white;
     font-weight: bold;
@@ -88,9 +95,8 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: var(--blue-dark);
 }
-
 
 #resultado {
     margin-top: 30px;
@@ -99,7 +105,6 @@ button:hover {
     text-align: center;
 }
 
-/* Rodapé */
 footer {
     margin-top: auto;
     padding: 20px 0;
@@ -112,22 +117,6 @@ footer {
     margin-bottom: 20px;
 }
 
-select {
-    padding: 10px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    background-color: white;
-}
-
-select:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-
 .info-text {
     font-size: 0.9rem;
     color: #666;
@@ -137,39 +126,14 @@ select:focus {
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 
-
-
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     body {
         padding: 20px 10px;
     }
 
-    .calculadora-container {
-        padding: 20px;
-    }
-
-    .notas-row {
-        flex-direction: column;
-    }
-
-    h1 {
-        font-size: 1.6rem;
-    }
-
-    button {
-        font-size: 1rem;
-    }
-
-    input[type="number"] {
-        font-size: 1rem;
-    }
-}
-
-
-@media (max-width: 768px) {
     .calculadora-container {
         padding: 25px;
     }
@@ -184,5 +148,24 @@ select:focus {
 
     .notas-row {
         gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculadora-container {
+        padding: 20px;
+    }
+
+    .notas-row {
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    button,
+    input[type="number"] {
+        font-size: 1rem;
     }
 }

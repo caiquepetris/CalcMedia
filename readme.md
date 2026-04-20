@@ -1,3 +1,6 @@
-# Projeto Atualizado com de html,css & js para react + vite
+# Projeto feito para calcular média de notas na faculdade
+ - Feito com React (Javascript) + Vite
 
-- Criado para facilitar o calculo da média da faculdade
+ By caique petris
+
+contato: caiquepetris@gmail.com

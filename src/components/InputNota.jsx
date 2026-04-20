@@ -1,4 +1,4 @@
-// src/components/InputNota.jsx
+
 function InputNota({ id, label, value, onChange }) {
   return (
     <div className="input-group">
