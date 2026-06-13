@@ -1,6 +1,9 @@
-# Projeto feito para calcular média de notas na faculdade
- - Feito com React (Javascript) + Vite
 
- By caique petris
+# Project  Built to  calculate the grade average in the university.
+Made with:
+- React ( Javascript)
+- VIte
 
-contato: caiquepetris@gmail.com
+By Caique Petris
+
+Contact: caiquepetris@gmail.com
