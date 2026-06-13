@@ -2,7 +2,7 @@
 # Project  Built to  calculate the grade average in the university.
 Made with:
 - React ( Javascript)
-- VIte
+- Vite
 
 By Caique Petris
 
