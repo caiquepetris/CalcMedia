@@ -6,7 +6,7 @@ function InputNota({ id, label, value, onChange }) {
       <input
         type="number"
         id={id}
-        step="0.1"
+        step="0,1"
         min="0"
         max="10"
         required
