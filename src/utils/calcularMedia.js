@@ -1,9 +1,26 @@
-const PESOS = { P1: 0.4, P2: 0.4, ATIVIDADE: 0.2,  };
+const PESOS = { P1: 0.4, P2: 0.4, ATIVIDADE: 0.2, };
 
-export const calcularMedia = ({ p1, p2, atividade, provaIntegrada, comPI }) => {
-  const notaAtividadeFinal = comPI ? (Number(atividade) + Number(provaIntegrada)) / 2 : Number(atividade);
+export const calcularMedia = ({ p1, p2, atividade, provaIntegrada, comPI, tipoPF, ProvaFinal, MediaFinal }) => {
+  
+  
+  if (tipoPF) {
+    const media = (Number(MediaFinal) + Number(ProvaFinal)) / 2;
+    return {
+      media: media.toFixed(2),
+      situacao: media >= 4.75 ? "Aprovado!" : "Reprovado!"
+    };
+  }
+
+ 
+  const notaAtividadeFinal = comPI 
+    ? (Number(atividade) + Number(provaIntegrada)) / 2 
+    : Number(atividade);
+
   const media = Number(p1) * PESOS.P1 + Number(p2) * PESOS.P2 + notaAtividadeFinal * PESOS.ATIVIDADE;
+
   return {
-    media: media.toFixed(2), situacao: media >= 4.75 ? " Aprovado!" : " Reprovado!"
+    media: media.toFixed(2),
+    situacao: media >= 4.75 ? "Aprovado!" : "Reprovado!"
   };
-};
+}
+
