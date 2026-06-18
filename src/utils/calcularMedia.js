@@ -1,4 +1,4 @@
-const PESOS = { P1: 0.4, P2: 0.4, ATIVIDADE: 0.2, };
+const PESOS = { P1: 0.4, P2: 0.4, ATIVIDADE: 0.2,  };
 
 export const calcularMedia = ({ p1, p2, atividade, provaIntegrada, comPI }) => {
   const notaAtividadeFinal = comPI ? (Number(atividade) + Number(provaIntegrada)) / 2 : Number(atividade);
