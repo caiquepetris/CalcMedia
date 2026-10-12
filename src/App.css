@@ -1,46 +1,86 @@
+/* ==========================================================================
+   Tokens
+   ========================================================================== */
 :root {
+    /* Cores */
     --blue: #007bff;
     --blue-dark: #0056b3;
+    --blue-ring: rgba(0, 123, 255, 0.25);
+
+    --bg: #f5f7fa;
+    --surface: #ffffff;
+    --text: #333333;
+    --heading: #1a1a1a;
+    --muted: #5f6672;
+    --placeholder: #767676;
+    --border: #c4c9d0;
+
+    /* Forma e sombra */
+    --radius-sm: 6px;
+    --radius-lg: 12px;
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    /* Tipografia */
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial, sans-serif;
+
+    /* Transições */
+    --transition: 0.2s ease;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #f5f7fa;
-    color: #333;
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
-    min-height: 100vh;
-}
-
-.calculadora-container {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    width: 100%;
-    max-width: 500px;
+    padding-block: clamp(1.25rem, 5vw, 2.5rem);
+    padding-inline: clamp(0.625rem, 3vw, 1.25rem);
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.5;
 }
 
 h1 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: #1a1a1a;
+    margin-bottom: 1.875rem;
+    font-size: clamp(1.6rem, 1.3rem + 1.5vw, 2rem);
+    line-height: 1.2;
+    color: var(--heading);
     text-align: center;
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+.calculadora-container {
+    width: 100%;
+    max-width: 500px;
+    padding: clamp(1.25rem, 4vw, 1.875rem);
+    background-color: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
 }
 
 .notas-row {
     display: flex;
-    gap: 16px;
-    margin-bottom: 20px;
     flex-wrap: wrap;
+    gap: clamp(0.75rem, 2vw, 1rem);
+    margin-bottom: 1.25rem;
 }
 
 .input-group {
@@ -48,124 +88,134 @@ h1 {
     min-width: 130px;
 }
 
+.select-container {
+    margin-bottom: 1.25rem;
+}
+
+/* ==========================================================================
+   Formulário
+   ========================================================================== */
 label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
 }
 
 input[type="number"],
 select {
-    padding: 10px;
     width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    margin-bottom: 1.25rem;
+    padding: 0.625rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+    color: inherit;
+    font: inherit;
     font-size: 1rem;
-    margin-bottom: 20px;
-    transition: border-color 0.3s;
+    /* 16px evita zoom automático no iOS */
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+select {
+    margin-bottom: 0.625rem;
 }
 
 input[type="number"]::placeholder {
-    color: #999;
+    color: var(--placeholder);
 }
 
 input[type="number"]:focus,
 select:focus {
     border-color: var(--blue);
     outline: none;
+    box-shadow: 0 0 0 3px var(--blue-ring);
 }
 
-select {
-    background-color: white;
-    margin-bottom: 10px;
+.info-text {
+    margin-block: 0.3rem 1rem;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--muted);
 }
 
+/* ==========================================================================
+   Botão
+   ========================================================================== */
 button {
-    padding: 12px;
     width: 100%;
-    background-color: var(--blue);
+    margin-top: 0.625rem;
+    padding: 0.75rem;
     border: none;
-    color: white;
-    font-weight: bold;
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
+    background-color: var(--blue);
+    color: #ffffff;
+    font: inherit;
+    font-size: 1.05rem;
+    font-weight: 600;
     cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-    font-size: 1.1rem;
+    transition: background-color var(--transition), transform var(--transition);
 }
 
 button:hover {
     background-color: var(--blue-dark);
 }
 
+button:active {
+    transform: translateY(1px);
+}
+
+button:focus-visible {
+    outline: 3px solid var(--blue-ring);
+    outline-offset: 2px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Resultado e rodapé
+   ========================================================================== */
 #resultado {
-    margin-top: 30px;
+    min-height: 1.5em;
+    /* evita "pulo" de layout quando o resultado aparece */
+    margin-top: 1.875rem;
     font-size: 1.2rem;
-    font-weight: bold;
+    font-weight: 600;
     text-align: center;
+    overflow-wrap: anywhere;
 }
 
 footer {
     margin-top: auto;
-    padding: 20px 0;
+    padding-block: 1.25rem;
     font-size: 0.9rem;
-    color: #777;
+    color: var(--muted);
     text-align: center;
 }
 
-.select-container {
-    margin-bottom: 20px;
-}
-
-.info-text {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    font-style: italic;
-}
-
+/* ==========================================================================
+   Utilitários
+   ========================================================================== */
 .hidden {
-    display: none;
+    display: none !important;
 }
 
-@media (max-width: 768px) {
-    body {
-        padding: 20px 10px;
-    }
-
-    .calculadora-container {
-        padding: 25px;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    button {
-        font-size: 1.05rem;
-    }
-
-    .notas-row {
-        gap: 12px;
-    }
-}
-
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
 @media (max-width: 480px) {
-    .calculadora-container {
-        padding: 20px;
-    }
-
     .notas-row {
         flex-direction: column;
     }
+}
 
-    h1 {
-        font-size: 1.6rem;
-    }
+@media (prefers-reduced-motion: reduce) {
 
-    button,
-    input[type="number"] {
-        font-size: 1rem;
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
     }
 }
